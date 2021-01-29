@@ -3,8 +3,6 @@ from consolemenu.format import *
 from consolemenu.items import *
 from time import sleep
 
-
-
 # Menu
 def app_menu():
   isExit=True
@@ -20,16 +18,18 @@ def app_menu():
     print('-----------------------------------------------------')
     user_selection = int(input('> '))
     if(user_selection == 1):
-      print("👔 Personal Branding")
+      personal_branding()
     elif (user_selection == 2):
-      print('♾️ Continously Learning')
+      continously_learning()
     elif (user_selection == 3):
-      print('🔍 Job Search')
+      job_search()
     elif (user_selection == 4):
-      print('📦 Project related')
+      project_related()
     elif (user_selection == 0):
       print('❌ Exit')
       exit()
+    else:
+      print('❌❌❌ Sadly this menu point is not available ❌❌❌')
 
 
 
@@ -37,15 +37,19 @@ def app_menu():
 
 # Personal Branding
 def personal_branding():
-  Screen().printf('hello')
-
-  return "hello"
+  print("👔 Personal Branding")
 
 # Continuously Learning
+def continously_learning():
+  print('♾️ Continously Learning')
 
 # Job Search
+def job_search():
+  print('🔍 Job Search')
 
 # Project Related
+def project_related():
+  print('📦 Project related')
 
 if __name__ == '__main__':
   app_menu()

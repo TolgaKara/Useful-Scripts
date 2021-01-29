@@ -60,4 +60,7 @@ def settings():
   print('05. ⚙️ Configuration')
 
 if __name__ == '__main__':
+  global db
+  db = TinyDB('dailytaskdb.json')
+
   app_menu()

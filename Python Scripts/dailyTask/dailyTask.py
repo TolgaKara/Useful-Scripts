@@ -2,6 +2,7 @@ from consolemenu import *
 from consolemenu.format import *
 from consolemenu.items import *
 from time import sleep
+from tinydb import TinyDB, Query
 
 # Menu
 def app_menu():
@@ -14,6 +15,7 @@ def app_menu():
     print('02. ♾️ Continuously Learning')
     print('03. 🔍 Job Search')
     print('04. 📦 Project related')
+    print('05. ⚙️ Configuration')
     print('00. ❌ Exit')
     print('-----------------------------------------------------')
     user_selection = int(input('> '))
@@ -25,6 +27,8 @@ def app_menu():
       job_search()
     elif (user_selection == 4):
       project_related()
+    elif (user_selection == 5):
+      settings()
     elif (user_selection == 0):
       print('❌ Exit')
       exit()
@@ -50,6 +54,10 @@ def job_search():
 # Project Related
 def project_related():
   print('📦 Project related')
+
+# Settings
+def settings():
+  print('05. ⚙️ Configuration')
 
 if __name__ == '__main__':
   app_menu()

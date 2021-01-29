@@ -42,22 +42,32 @@ def app_menu():
 # Personal Branding
 def personal_branding():
   print("👔 Personal Branding")
+  print('-----------------------------------------------------')
+
 
 # Continuously Learning
 def continously_learning():
   print('♾️ Continously Learning')
+  print('-----------------------------------------------------')
+
 
 # Job Search
 def job_search():
   print('🔍 Job Search')
+  print('-----------------------------------------------------')
+
 
 # Project Related
 def project_related():
   print('📦 Project related')
+  print('-----------------------------------------------------')
+
 
 # Settings
 def settings():
   print('05. ⚙️ Configuration')
+  print('-----------------------------------------------------')
+
 
 if __name__ == '__main__':
   global db

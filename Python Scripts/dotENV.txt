@@ -1,0 +1,15 @@
+# This is just a showcase how to env looks like.
+
+## Codewars
+CODEWARS-ID = "USERNAME"
+
+## Github
+GITHUB-USERNAME = "GITHUB USERNAME"
+GITHUB-PASSWORD = "GITHUB PASSWORD"
+
+## LinkedIn
+Linkedin-username = "LinkedIn Username"
+Linkedin-PASSWORD = "LinkedIn Username"
+
+
+

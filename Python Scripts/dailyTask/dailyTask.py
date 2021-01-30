@@ -81,6 +81,8 @@ def get_counts_of_words(articles_content):
   for word in words:
     words_count_obj[word] = articles_content.count(word)
   print(words_count_obj)
+  # TODO filter out values which are under 5 times appearance
+  # TODO sort the entries and get the top 20
   exit()
   return words_count_obj
 

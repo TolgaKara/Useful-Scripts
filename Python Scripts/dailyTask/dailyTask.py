@@ -9,6 +9,10 @@ import os
 from dotenv import load_dotenv
 import webbrowser
 import requests
+import re
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
 
 load_dotenv()
 
@@ -48,26 +52,33 @@ def app_menu():
       print('❌❌❌ Sadly this menu point is not available ❌❌❌')
 
 
+def cleanhtml(raw_html):
+  cleanr = re.compile('<.*?>|&([a-z0-9]+|#[0-9]{1,6}|#x[0-9a-f]{1,6});')
+  cleantext = re.sub(cleanr, '', raw_html)
+  cleantext = cleantext.strip()
 
+  return cleantext
 
+def clean_stopwords(cleantext):
+  stop_words = set(stopwords.words('english'))
+  word_tokens = word_tokenize(cleantext)
+  filtered_sentence = [w for w in word_tokens if not w in stop_words]
+  filtered_sentence = []
 
-# Personal Branding
-def personal_branding():
-  print("👔 Personal Branding")
-  print('-----------------------------------------------------')
-  linkedin_network_url = 'https://www.linkedin.com/mynetwork/'
-  webbrowser.register('chrome',
-	  None,
-	webbrowser.BackgroundBrowser("C:\Program Files\Google\Chrome\Application\chrome.exe"))
-  # Connect to 3 Developers
-  webbrowser.get('chrome').open(linkedin_network_url)
+  for w in word_tokens:
+    if w not in stop_words:
+        filtered_sentence.append(w)
+  return filtered_sentence
 
-  # Write prefessional Developers a Message and Network with them
-  ## Fetch content and user and see if I find a topic which I can ask or give some compliment
-  """
+def get_counts_of_words(articles_content):
+  words = clean_stopwords(articles_content)
+  print(words)
+  exit()
+  #words = list(map(lambda s: s.strip(), words))
+  #print(words)
+  pass
 
-  """
-
+def get_devto_articles():
   dev_to_page = "1"
   dev_to_per_page = "1000"
   dev_to_tags = "javascript,webdev,beginners,programming,react,python,tutorial,csstechtalks,writing,bash,devjournal,performance,gatsby,code,firebase,agile,svelte,technology,oop,remotehelp,100daysofcode,git,database,codequality,news,laravel,graphql,codepen,watercooler,startup,functional,serverless,architecture,challenge,algorithms,vscode,todayilearned,django,learning,coding,motivation,development,npm,redux,frontend,api,sql,nextjs,mongodb,codenewbie,productivity,node,career,html,discuss,devops,vue,typescript,showdev,opensource,github,testing,php,security"
@@ -83,8 +94,35 @@ def personal_branding():
   #print(dev_articles_json[0])
   for i in range(0,10):
     dev_articles_list.append({"id":dev_articles_json[i]['id'], "title":dev_articles_json[i]['title'],"description":dev_articles_json[i]['description'],"readable_publish_date":dev_articles_json[i]['readable_publish_date'],"url":dev_articles_json[i]['url'], "tags":dev_articles_json[i]['tags'],"user_name":dev_articles_json[i]['user']['name'],"user_username":dev_articles_json[i]['user']['username'], "user_github_username":dev_articles_json[i]['user']['github_username'], "user_profile_image":dev_articles_json[i]['user']['profile_image']})
-  print(dev_articles_list)
+  #print(dev_articles_list)
 
+  #dev_to_articles_content_url =
+  dev_full_articles_list=[]
+  for article in dev_articles_list:
+    article['content'] = cleanhtml(requests.get("https://dev.to/api/articles/{}".format(article['id'])).json()['body_html'])
+    dev_full_articles_list.append(article)
+
+
+  dev_final_article = []
+  for article in dev_full_articles_list:
+    article['content'] = get_counts_of_words(article['content'])
+    dev_final_article.append(article)
+  return dev_final_article
+
+# Personal Branding
+def personal_branding():
+  print("👔 Personal Branding")
+  print('-----------------------------------------------------')
+  linkedin_network_url = 'https://www.linkedin.com/mynetwork/'
+  webbrowser.register('chrome',
+	  None,
+	webbrowser.BackgroundBrowser("C:\Program Files\Google\Chrome\Application\chrome.exe"))
+  # Connect to 3 Developers
+  webbrowser.get('chrome').open(linkedin_network_url)
+
+  # Write prefessional Developers a Message and Network with them
+  ## Fetch content and user and see if I find a topic which I can ask or give some compliment
+  dev_to_articles = get_devto_articles()
 
   # After Completion
   isPersonalBranding = True

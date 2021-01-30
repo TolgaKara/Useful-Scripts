@@ -3,6 +3,17 @@ from consolemenu.format import *
 from consolemenu.items import *
 from time import sleep
 from tinydb import TinyDB, Query
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+import os
+from dotenv import load_dotenv
+import webbrowser
+
+load_dotenv()
+
+LINKEDIN_USERNAME = os.getenv("LINKEDIN-USERNAME")
+LINKEDIN_PASSWORD = os.getenv("LINKEDIN-PASSWORD")
+
 
 # Menu
 def app_menu():
@@ -12,7 +23,7 @@ def app_menu():
     print('A automation Script which should improve my workflow.')
     print('-----------------------------------------------------')
     print('01. 👔 Personal Branding')
-    print('02. ♾️ Continuously Learning')
+    print('02. ♾️  Continuously Learning')
     print('03. 🔍 Job Search')
     print('04. 📦 Project related')
     print('05. ⚙️ Configuration')
@@ -43,6 +54,25 @@ def app_menu():
 def personal_branding():
   print("👔 Personal Branding")
   print('-----------------------------------------------------')
+  linkedin_network_url = 'https://www.linkedin.com/mynetwork/'
+  webbrowser.register('chrome',
+	  None,
+	webbrowser.BackgroundBrowser("C:\Program Files\Google\Chrome\Application\chrome.exe"))
+  webbrowser.get('chrome').open(linkedin_network_url)
+  isOnLinkedNetwork = True
+  linkedin_network_user_input = ""
+  while(isOnLinkedNetwork):
+    linkedin_network_user_input=input('Have you connected with 3 relevant Networks? (y / n)')
+    if(linkedin_network_user_input == 'y'):
+      isOnLinkedNetwork = False
+    else:
+      isOnLinkedNetwork = True
+
+
+
+
+  sleep(5)
+
 
 
 # Continuously Learning

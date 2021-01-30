@@ -61,22 +61,28 @@ def cleanhtml(raw_html):
 
 def clean_stopwords(cleantext):
   stop_words = set(stopwords.words('english'))
+  custom_stop_words=[";",":"]
   word_tokens = word_tokenize(cleantext)
   filtered_sentence = [w for w in word_tokens if not w in stop_words]
+  filtered_sentence = [w for w in word_tokens if not w in custom_stop_words]
+
   filtered_sentence = []
 
   for w in word_tokens:
-    if w not in stop_words:
+    if w not in stop_words and w not in custom_stop_words:
         filtered_sentence.append(w)
   return filtered_sentence
 
 def get_counts_of_words(articles_content):
   words = clean_stopwords(articles_content)
-  print(words)
+  #clean trailing whitespaces
+  words = list(map(lambda s: s.strip(), words))
+  words_count_obj = {}
+  for word in words:
+    words_count_obj[word] = articles_content.count(word)
+  print(words_count_obj)
   exit()
-  #words = list(map(lambda s: s.strip(), words))
-  #print(words)
-  pass
+  return words_count_obj
 
 def get_devto_articles():
   dev_to_page = "1"

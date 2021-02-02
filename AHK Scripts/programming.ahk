@@ -2,8 +2,12 @@ SetCapsLockState, AlwaysOff
 
 ; [CapsLock] + [D] - print current date
 CapsLock & d::
-  FormatTime, CurrentDateTime,, yyyy-MM-dd
-  SendInput %CurrentDateTime%
+  Run, https://www.linkedin.com/mynetwork/
+  Run, https://www.linkedin.com/in/tolgakara/
+  Run, https://github.com/TolgaKara?tab=repositories
+  ; Run, chrome://newtab
+  Run, C:\Users\Tolga Kara\AppData\Local\Programs\Notion\Notion.exe
+
   return
 Return
 

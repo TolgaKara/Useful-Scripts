@@ -6,7 +6,7 @@ CapsLock & d::
   Run, https://www.linkedin.com/in/tolgakara/
   Run, https://github.com/TolgaKara?tab=repositories
 
-  Run, https://www.codewars.com/kata/search/my-languages?q=&&xids=completed&beta=false&order_by=total_completed%20desc
+  Run,  https://www.codewars.com/kata/search/my-languages?q=&&xids=completed&beta=false&order_by=total_completed
 
   Run, https://trello.com/b/5uBNznJB/written-application
   Run, https://trello.com/b/DbJnQPkX/kohovio

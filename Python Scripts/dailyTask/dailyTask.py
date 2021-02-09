@@ -28,7 +28,7 @@ def app_menu():
     print('A automation Script which should improve my workflow.')
     print('-----------------------------------------------------')
     print('01. 👔 Personal Branding')
-    print('02. ♾️  Continuously Learning')
+    print('02. ♾️ Continuously Learning')
     print('03. 🔍 Job Search')
     print('04. 📦 Project related')
     print('05. ⚙️ Configuration')
